@@ -1,6 +1,16 @@
 const express = require("express");
+const morgan = require("morgan");
+const cors = require("cors");
+
 const app = express();
 
+// Se recomienda usar los middleware antes de las rutas
+app.use(morgan("tiny"));
+app.use(cors());
+app.use(express.json()); // Este middleware viene por defecto en express
+app.use(express.urlencoded({ extended: true }));
+
+//Rutas
 app.get("/", function (req, res) {
   res.send("Hello World!");
 });
